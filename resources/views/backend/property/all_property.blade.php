@@ -1,0 +1,68 @@
+@extends('admin.admin_dashboard')
+@section('admin')
+<div class="page-content">
+
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+  <a href="{{route('add.property')}}">Add Property</a> 
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title">property All</h6>
+    
+    <div class="table-responsive">
+      <table id="dataTableExample" class="table">
+        <thead>
+          <tr>
+            <th>S1</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>P Type</th>
+            <th>Status Type</th>
+            <th>City</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ( $property as $key=>$item)
+            <tr>
+                <td>{{$key+1}}</td>
+                <td><img src="{{asset($item->property_thambnail	)}}" style="width: 70px" height="40px"></td>
+                <td>{{$item->property_name}}</td>
+                <td>{{$item->ptype_id}}</td>
+                <td>{{$item->property_status	}}</td>
+                <td>{{$item->city}}</td>
+                <td>
+                  @if($item->Status==1)
+                <span class="badge-rounded-pill bg success">Ative</span>
+                      
+                  @else
+                  <span class="badge-rounded-pill bg danger">Inactive</span>
+                      
+                  @endif
+                </td>
+                <td>
+        <a href="{{route('edit.eminitie',$item->id)}}" class="btn btn-warning">Edit</a>
+        <a href="{{route('delete.eminitie',$item->id)}}" class="btn btn-inverse-danger" id="delete">Delete</a>
+                </td>
+              </tr>
+            @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@endsection
